@@ -18,6 +18,7 @@
     <!-- Fonts CSS-->
     <link rel="stylesheet" href="css/heading.css">
     <link rel="stylesheet" href="css/body.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
             <div class="container">
                 <!-- Portfolio Section Heading-->
                 <div class="text-center">
-                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block">Statistical Analysis</h2>
+                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block">Protein Information And Analysis</h2>
                     <!-- Icon Divider-->
                 </div>
                 <br>
@@ -79,16 +80,22 @@
                 <div class="text-center">
                     <div id="info-div" style="display: none;">
                         <hr>
+                        <article>
                         <h3><b>Protein Name: </b></h3>
                             <h4 id="protein-name"></h4>
+                        </article>
+                        <article>
                         <h3><b>Gene: </b></h3>
                             <h4 id="protein-gene"></h4>
+                        </article>
+                        <article>
                         <h3><b>Function: </b></h3>
                             <h4 id="protein-function"></h4>
+                        </article>
                     </div>
                 </div>
 
-                <div id="boxplot-R" style="display: none;">
+                <div id="boxplot-R">
                 
                 </div>
 
@@ -103,7 +110,6 @@
         </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="analysis.js"></script>
 
 </body>

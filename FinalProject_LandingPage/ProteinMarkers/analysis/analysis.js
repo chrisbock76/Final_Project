@@ -1,3 +1,5 @@
+
+
 d3.csv("panel_uniprot.csv").then((data) => {
 
     var panelData = data
@@ -19,15 +21,14 @@ d3.csv("panel_uniprot.csv").then((data) => {
             .text(panel)
             .property("value", panel);
     });
-
-
-
 })
+
 
 function selectPathway(pathway) {
     d3.csv("panel_uniprot.csv").then((data) => {
         var proteinDiv = d3.select("#protein-div")
         proteinDiv.style('display', 'block')
+        var dropdown = d3.select("#dropdownMenu_protein")
         var panelData = data
         var panelProteins = panelData.filter(panelData => panelData.Panel == pathway);
         var uniprotID = panelProteins.map(panelProteins => panelProteins.UniprotID)
@@ -35,6 +36,8 @@ function selectPathway(pathway) {
         //console.log(pathway)
         //console.log(uniprotID)
         var dropdown = d3.select("#dropdownMenu_protein")
+
+        dropdown.html("<option selected disabled>Choose here</option>")
 
         uniprotID.forEach((protein) => {
             dropdown.append("option")
@@ -45,11 +48,16 @@ function selectPathway(pathway) {
     })
 }
 
-function showProteinData(protein){
+function proteinDropdown() {
+
+}
+
+function showProteinData(protein) {
     d3.csv("protein_scraped_data.csv").then((data) => {
         var proteinInfo = data.filter(data => data["Uniprot ID"] == protein);
-        console.log(proteinInfo)
-        console.log(proteinInfo[0]["Protein Name"])
+        //console.log(protein)
+        //console.log(proteinInfo)
+        //console.log(proteinInfo[0]["Protein Name"])
         var infoDiv = d3.select("#info-div")
         infoDiv.style('display', 'block')
         var name = d3.select("#protein-name")
@@ -59,4 +67,133 @@ function showProteinData(protein){
         gene.text(proteinInfo[0]["Gene Name"])
         func.text(proteinInfo[0]["Function"])
     })
+    buildBoxPlotTime(protein)
 }
+
+function buildBoxPlotTime(uniprot) {
+    Promise.all([
+        d3.csv("responser.csv"),
+        d3.csv("nonresponser.csv"),
+    ]).then(function (files) {
+        var responser = files[0]
+        var nonresponser = files[1]
+        var responser_values = []
+        var nonresponser_values = []
+        //console.log(responser[0])
+        //console.log(responser[0][uniprot])
+        //console.log(nonresponser.length)
+        findUniprotValues(uniprot, responser, responser_values)
+        findUniprotValues(uniprot, nonresponser, nonresponser_values)
+        //console.log(responser_values)
+        //console.log(nonresponser_values)
+
+        var baseline_R = []
+        var six_R = []
+        var twelve_R = []
+        var baseline_N = []
+        var six_N = []
+        var twelve_N = []
+
+        for (var j = 0; j < responser.length; j = j + 3) {
+            baseline_R.push(responser_values[j])
+            six_R.push(responser_values[j + 1])
+            twelve_R.push(responser_values[j + 2])
+        }
+        for (var k = 0; k < nonresponser.length; k = k + 3) {
+            baseline_N.push(nonresponser_values[k])
+            six_N.push(nonresponser_values[k + 1])
+            twelve_N.push(nonresponser_values[k + 2])
+        }
+
+
+        var responsertotal = baseline_R.concat(six_R, twelve_R)
+        //console.log(baseline_R)
+        //console.log(six_R)
+        //console.log(twelve_R)
+        //console.log(baseline_N.length)
+        //console.log(six_N.length)
+        //console.log(twelve_N.length)
+
+
+        var responsertotal = baseline_R.concat(six_R, twelve_R)
+        //responsertotal.push(baseline_R)
+        //responsertotal.push(six_R)
+        //responsertotal.push(twelve_R)
+
+        //console.log(responsertotal)
+        var trace1 = {
+            y: baseline_R,
+            name: 'BaseLine',
+            marker: { color: '#3D9970' },
+            legendgroup:'Responser',
+            type: 'box'
+        };
+        var trace2 = {
+            y: six_R,
+            name: 'Six Weeks',
+            marker: { color: '#3D9970' },
+            legendgroup: 'Responser',
+            showlegend: false,
+            type: 'box'
+        };
+        var trace3 = {
+            y: twelve_R,
+            name: 'Twelve Weeks',
+            marker: { color: '#3D9970' },
+            legendgroup: 'Responser',
+            showlegend: false,
+            type: 'box'
+        };
+
+        var trace4 = {
+            y: baseline_N,
+            name: 'BaseLine',
+            marker: { color: '##FF4136' },
+            legendgroup: 'Nonresponser',
+
+            type: 'box'
+        };
+        var trace5 = {
+            y: six_N,
+            name: 'Six Weeks',
+            marker: { color: '##FF4136' },
+            legendgroup: 'Nonresponser',
+            showlegend: false,
+            type: 'box'
+        };
+        var trace6 = {
+            y: twelve_N,
+            name: 'Twelve Weeks',
+            marker: { color: '##FF4136' },
+            legendgroup: 'Nonresponser',
+            showlegend: false,
+            type: 'box'
+        };
+
+
+        var boxData = [trace1, trace2, trace3, trace4, trace5, trace6];
+
+        var layout = {
+            yaxis: {
+                zeroline: false
+            },
+            showlegend: true,
+            boxmode: 'group'
+        };
+
+        Plotly.newPlot('boxplot-R', boxData, layout);
+
+
+    }).catch(function (err) {
+        throw err
+    })
+}
+
+
+function findUniprotValues(uniprotID, array, valuearray) {
+
+    for (var i = 0; i < array.length; i++) {
+        valuearray.push(array[i][uniprotID])
+    }
+}
+
