@@ -19,6 +19,8 @@
         }
       }
     });
+
+  
   
     // Scroll to top button appear
     $(document).scroll(function() {
@@ -64,6 +66,10 @@
         $(this).removeClass("floating-label-form-group-with-focus");
       });
     });
+
+    $('button').click(function(){
+      window.location.href='assets/analysis/analysis.html';
+   })
   
   })(jQuery); // End of use strict
   
