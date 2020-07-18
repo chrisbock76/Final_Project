@@ -125,14 +125,15 @@ function buildBoxPlotTime(uniprot) {
             y: baseline_R,
             name: 'BaseLine',
             marker: { color: '#3D9970' },
-            legendgroup:'Responser',
+            legendgroup:'Responder',
+            showlegend: false,
             type: 'box'
         };
         var trace2 = {
             y: six_R,
             name: 'Six Weeks',
             marker: { color: '#3D9970' },
-            legendgroup: 'Responser',
+            legendgroup: 'Responder',
             showlegend: false,
             type: 'box'
         };
@@ -140,7 +141,7 @@ function buildBoxPlotTime(uniprot) {
             y: twelve_R,
             name: 'Twelve Weeks',
             marker: { color: '#3D9970' },
-            legendgroup: 'Responser',
+            legendgroup: 'Responder',
             showlegend: false,
             type: 'box'
         };
@@ -149,15 +150,15 @@ function buildBoxPlotTime(uniprot) {
             y: baseline_N,
             name: 'BaseLine',
             marker: { color: '##FF4136' },
-            legendgroup: 'Nonresponser',
-
+            legendgroup: 'Nonresponder',
+            showlegend: false,
             type: 'box'
         };
         var trace5 = {
             y: six_N,
             name: 'Six Weeks',
             marker: { color: '##FF4136' },
-            legendgroup: 'Nonresponser',
+            legendgroup: 'Nonresponder',
             showlegend: false,
             type: 'box'
         };
@@ -165,7 +166,7 @@ function buildBoxPlotTime(uniprot) {
             y: twelve_N,
             name: 'Twelve Weeks',
             marker: { color: '##FF4136' },
-            legendgroup: 'Nonresponser',
+            legendgroup: 'Nonresponder',
             showlegend: false,
             type: 'box'
         };
