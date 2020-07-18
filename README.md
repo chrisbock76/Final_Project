@@ -51,6 +51,6 @@ We used a Random Forest Classifier model to take the provided NPX values, timefr
 * <b>Anova_by_proteins.ipynb</b> - Data cleanup notebook
 * <b>BS_ML_test.ipynb</b> - Machine learning testing notebook. Contains KMeans and Random Forest models
 * <b>NewANOVAxProtein.ipynb</b> - ANOVA Test Notebook. 
-* <b>data_merge.ipynb/data2_merge.ipynb</b> - Data cleanup notebook
-
+* <b>data_merge.ipynb/data2_merge.ipynb</b> - Data cleanup notebook<br>
+### Files
 * <b>RandomForest_Model</b> - binary file of random forest algorithm (Saved via Pickle)
