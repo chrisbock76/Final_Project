@@ -46,8 +46,11 @@ We used a Random Forest Classifier model to take the provided NPX values, timefr
 * Run statistical tests (ANOVA) to look for statistical significance for certain proteins based on model results
 * Test second dataset using the model for accuracy
 
-## Jupyter Notebooks used
+## Resources
+### Jupyter Notebooks
 * <b>Anova_by_proteins.ipynb</b> - Data cleanup notebook
 * <b>BS_ML_test.ipynb</b> - Machine learning testing notebook. Contains KMeans and Random Forest models
 * <b>NewANOVAxProtein.ipynb</b> - ANOVA Test Notebook. 
 * <b>data_merge.ipynb/data2_merge.ipynb</b> - Data cleanup notebook
+
+* <b>RandomForest_Model</b> - binary file of random forest algorithm 
