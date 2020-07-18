@@ -36,6 +36,14 @@ We have been tasked to identify some or all of the following via analysis of the
 *	(Maybe) Do the two datasets agree with one another in their results.
 *	(If possible, can you combine the two datasets and look at the analysis again)
 
+## Machine Learning Model
+We used a Random Forest Classifier model to take the provided NPX values, timeframe of treatment, and sites and predict whether or not a given sample is a Responder or Non-responder.
+
+## Technique
+* Data Cleanup of provided sample data to get rid of unnecessary lines/data
+* Create machine learning model using cleaned data
+* Run statistical tests (ANOVA) to look for statistical significance for certain proteins based on model results
+* Test second dataset using the model for accuracy
 
 ## Jupyter Notebooks used
 * <b>Anova_by_proteins.ipynb</b> - Data cleanup notebook
