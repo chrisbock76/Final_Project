@@ -5,7 +5,7 @@ Identifying a classifier and proteins that significantly change in a simulated O
 CWRU Final Project (Group 2)
 Chris Bock, Debra Fenty, Ben Snyder, Frankie Wong
 
-Site: https://chrisbock76.github.io/Final_Project/
+Site: https://chrisbock76.github.io/Final_Project/<br>
 Presentation: https://docs.google.com/presentation/d/1oF25TyMGBnpUAAlSOjVGa522W7w3KbH9M3rzxzRgc7Q/edit?usp=sharing
 
 ## Jupyter Notebooks used
