@@ -68,6 +68,7 @@ function showProteinData(protein) {
         func.text(proteinInfo[0]["Function"])
     })
     buildBoxPlotTime(protein)
+    Sitebp(protein)
 }
 
 function buildBoxPlotTime(uniprot) {
@@ -106,7 +107,6 @@ function buildBoxPlotTime(uniprot) {
         }
 
 
-        var responsertotal = baseline_R.concat(six_R, twelve_R)
         //console.log(baseline_R)
         //console.log(six_R)
         //console.log(twelve_R)
@@ -115,7 +115,6 @@ function buildBoxPlotTime(uniprot) {
         //console.log(twelve_N.length)
 
 
-        var responsertotal = baseline_R.concat(six_R, twelve_R)
         //responsertotal.push(baseline_R)
         //responsertotal.push(six_R)
         //responsertotal.push(twelve_R)
@@ -178,7 +177,6 @@ function buildBoxPlotTime(uniprot) {
             yaxis: {
                 zeroline: false
             },
-            showlegend: true,
             boxmode: 'group'
         };
 
@@ -196,5 +194,90 @@ function findUniprotValues(uniprotID, array, valuearray) {
     for (var i = 0; i < array.length; i++) {
         valuearray.push(array[i][uniprotID])
     }
+}
+
+function Sitebp(uniprot){
+    d3.csv("../../Resources/data1+info.csv").then(function (data) {
+        var baseline_array = {
+            values: [],
+            site: []
+        }
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]["Time"] === "Baseline") {
+            baseline_array.values.push(data[i][uniprot])
+            baseline_array.site.push(data[i]["Site"])
+            }
+        }
+    //console.log(baseline_array["site"][0])
+    siteA = []
+    siteB = []
+    siteC = []
+    siteD = []
+    siteE = []
+
+    for (var j = 0; j < baseline_array["site"].length; j++) {
+        if (baseline_array["site"][j] === "Site_A") {
+            siteA.push(baseline_array["values"][j])
+        }
+        else if (baseline_array["site"][j] === "Site_B") {
+            siteB.push(baseline_array["values"][j])
+        }
+        else if (baseline_array["site"][j] === "Site_C") {
+            siteC.push(baseline_array["values"][j])
+        }
+        else if (baseline_array["site"][j] === "Site_D") {
+            siteD.push(baseline_array["values"][j])
+        }
+        else if (baseline_array["site"][j] === "Site_E") {
+            siteE.push(baseline_array["values"][j])
+        }
+    }
+
+    var trace1 = {
+        y: siteA,
+        name: 'Site_A',
+        marker: { color: 'red' },
+        type: 'box'
+    };
+    var trace2 = {
+        y: siteB,
+        name: 'Site_B',
+        marker: { color: 'blue' },
+        type: 'box'
+    };
+    var trace3 = {
+        y: siteC,
+        name: 'Site_C',
+        marker: { color: 'yellow' },
+        type: 'box'
+    };
+
+    var trace4 = {
+        y: siteD,
+        name: 'Site_D',
+        marker: { color: 'green' },
+
+        type: 'box'
+    };
+    var trace5 = {
+        y: siteE,
+        name: 'Site_E',
+        marker: { color: 'purple' },
+        type: 'box'
+    };
+    var boxData = [trace1, trace2, trace3, trace4, trace5];
+
+    var layout = {
+        yaxis: {
+            zeroline: false
+        },
+        boxmode: 'group'
+    };
+
+    Plotly.newPlot('boxplot-S', boxData, layout);
+
+
+    })
+
 }
 
