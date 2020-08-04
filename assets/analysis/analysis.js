@@ -4,6 +4,9 @@ var infoDiv = d3.select("#info-div")
 var time_div = d3.select("#timepoint-analysis")
 var site_div = d3.select("#site-analysis")
 var select_buttons = d3.select("#select_var")
+var resB = d3.select("#blueR")
+var nrR = d3.select("#redNR")
+
 d3.csv("panel_uniprot.csv").then((data) => {
 
     var panelData = data
@@ -33,6 +36,8 @@ function selectPathway(pathway) {
         proteinDiv.style('display', 'block')
         infoDiv.style('display', 'none')
         select_buttons.style('display', 'none')
+        resB.style('display', 'none')
+        nrR.style('display', 'none')
         time_div.style('display', 'none')
         site_div.style('display', 'none')
         
@@ -61,6 +66,8 @@ function selectPathway(pathway) {
 //}
 
 function showProteinData(protein) {
+    resB.style('display', 'none')
+    nrR.style('display', 'none')
     time_div.style('display', 'none')
     site_div.style('display', 'none')
     
@@ -91,6 +98,8 @@ function showProteinData(protein) {
         time_button.on('click', function(){
             buildBoxPlotTime(protein, gene_name)
             //Sitebp(protein, gene_name)
+            resB.style('display', 'block')
+            nrR.style('display', 'block')
             time_div.style('display', 'block')
             site_div.style('display', 'none')
 
@@ -99,6 +108,8 @@ function showProteinData(protein) {
         site_button.on('click', function(){
             //buildBoxPlotTime(protein, gene_name)
             Sitebp(protein, gene_name)
+            resB.style('display', 'none')
+            nrR.style('display', 'none')
             time_div.style('display', 'none')
             site_div.style('display', 'block')
 
