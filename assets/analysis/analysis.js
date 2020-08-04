@@ -1,6 +1,9 @@
 
-
-
+var proteinDiv = d3.select("#protein-div")
+var infoDiv = d3.select("#info-div")
+var time_div = d3.select("#timepoint-analysis")
+var site_div = d3.select("#site-analysis")
+var select_buttons = d3.select("#select_var")
 d3.csv("panel_uniprot.csv").then((data) => {
 
     var panelData = data
@@ -27,8 +30,13 @@ d3.csv("panel_uniprot.csv").then((data) => {
 
 function selectPathway(pathway) {
     d3.csv("panel_uniprot.csv").then((data) => {
-        var proteinDiv = d3.select("#protein-div")
         proteinDiv.style('display', 'block')
+        infoDiv.style('display', 'none')
+        select_buttons.style('display', 'none')
+        time_div.style('display', 'none')
+        site_div.style('display', 'none')
+        
+        
         var dropdown = d3.select("#dropdownMenu_protein")
         var panelData = data
         var panelProteins = panelData.filter(panelData => panelData.Panel == pathway);
@@ -49,18 +57,20 @@ function selectPathway(pathway) {
     })
 }
 
-function proteinDropdown() {
-
-}
+//function proteinDropdown() {
+//}
 
 function showProteinData(protein) {
+    time_div.style('display', 'none')
+    site_div.style('display', 'none')
     
     d3.csv("protein_scraped_data.csv").then((data) => {
         var proteinInfo = data.filter(data => data["Uniprot ID"] == protein);
         //console.log(protein)
         //console.log(proteinInfo)
         //console.log(proteinInfo[0]["Protein Name"])
-        var infoDiv = d3.select("#info-div")
+        
+        var analysisDiv = d3.select("#protein-analysis")
         infoDiv.style('display', 'block')
         var name = d3.select("#protein-name")
         var gene = d3.select("#protein-gene")
@@ -69,12 +79,35 @@ function showProteinData(protein) {
         gene.text(proteinInfo[0]["Gene Name"])
         func.text(proteinInfo[0]["Function"])
         var gene_name = proteinInfo[0]["Gene Name"]
-        buildBoxPlotTime(protein, gene_name)
-        Sitebp(protein, gene_name)
+        
+        select_buttons.style('display', 'block')
+        var time_button = d3.select("#timepoint")
+        var site_button = d3.select("#site")
+        
+
+
+        //buildBoxPlotTime(protein, gene_name)
+        //Sitebp(protein, gene_name)
+        time_button.on('click', function(){
+            buildBoxPlotTime(protein, gene_name)
+            //Sitebp(protein, gene_name)
+            time_div.style('display', 'block')
+            site_div.style('display', 'none')
+
+        })
+
+        site_button.on('click', function(){
+            //buildBoxPlotTime(protein, gene_name)
+            Sitebp(protein, gene_name)
+            time_div.style('display', 'none')
+            site_div.style('display', 'block')
+
+        })
+
+
     })
-
-
 }
+
 
 function buildBoxPlotTime(uniprot, gene) {
     Promise.all([

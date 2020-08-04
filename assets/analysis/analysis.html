@@ -18,7 +18,7 @@
     <!-- Fonts CSS-->
     <link rel="stylesheet" href="../css/heading.css">
     <link rel="stylesheet" href="../css/body.css">
-    <link rel="stylesheet" href="css/analysis.css">
+    <!--<link rel="stylesheet" href="css/analysis.css">-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
@@ -82,6 +82,8 @@
                         </select>
                     </div>
                 </div>
+
+
                 <div class="text-center">
                     <div id="info-div" style="display: none;">
                         <hr>
@@ -100,88 +102,109 @@
                     </div>
                 </div>
 
-                <div class="container">
-                    <div class="row" id="boxplot-R">
+                <div class="text-center">
+                    <div class="container" id="select_var" style="display: none;">
+                        <button type="button" class="analysis_button" id="timepoint" value="time_selected">Protein
+                            Analysis By Timepoints</button>
+                        <button type="button" class="analysis_button" id="site" value="site_selected">Protein Analysis
+                            By Site Collection</button>
                     </div>
-                    <div class="row" id="anova_R" style="display: none;">
-                        <div class="text-center">
-                            <h4 id="table_title_R"></h4>
+                </div>
+
+                <div id="timepoint-analysis">
+
+                    <div class="container">
+                        <div class="row" id="boxplot-R">
                         </div>
-                        <table class="table">
-                            <thead class="table table-bordered table-dark">
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">sum_sq</th>
-                                    <th scope="col">df</th>
-                                    <th scope="col">F</th>
-                                    <th scope="col">PR(>F)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div class="row" id="anova_R" style="display: none;">
+                            <div class="text-center">
+                                <h4 id="table_title_R"></h4>
+                            </div>
+                            <table class="table">
+                                <thead class="table table-bordered table-dark">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">sum_sq</th>
+                                        <th scope="col">df</th>
+                                        <th scope="col">F</th>
+                                        <th scope="col">PR(>F)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="row" id="anova_NR" style="display: none;">
+                            <div class="text-center">
+                                <h4 id="table_title_NR"></h4>
+                            </div>
+                            <table class="table">
+                                <thead class="table table-bordered table-dark">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">sum_sq</th>
+                                        <th scope="col">df</th>
+                                        <th scope="col">F</th>
+                                        <th scope="col">PR(>F)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="site-analysis">
+
+                    <div class="container">
+
+                        <div class="row" id="boxplot-S">
+                        </div>
+                        <div class="row" id="anova_S" style="display: none;">
+                            <div class="text-center">
+                                <h4 id="table_title_S"></h4>
+                            </div>
+                            <table class="table">
+                                <thead class="table table-bordered table-dark">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">sum_sq</th>
+                                        <th scope="col">df</th>
+                                        <th scope="col">F</th>
+                                        <th scope="col">PR(>F)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
                     </div>
 
-                    <div class="row" id="anova_NR" style="display: none;">
-                        <div class="text-center">
-                            <h4 id="table_title_NR"></h4>
-                        </div>
-                        <table class="table">
-                            <thead class="table table-bordered table-dark">
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">sum_sq</th>
-                                    <th scope="col">df</th>
-                                    <th scope="col">F</th>
-                                    <th scope="col">PR(>F)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="row" id="boxplot-S">
-                    </div>
-                    <div class="row" id="anova_S" style="display: none;">
-                        <div class="text-center">
-                            <h4 id="table_title_S"></h4>
-                        </div>
-                        <table class="table">
-                            <thead class="table table-bordered table-dark">
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">sum_sq</th>
-                                    <th scope="col">df</th>
-                                    <th scope="col">F</th>
-                                    <th scope="col">PR(>F)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <hr>
 
                 </div>
             </div>
 
-            <hr>
+    </div>
+
+    <hr>
 
 
-            <div class="container">
+    <div class="container">
 
 
-            </div>
+    </div>
 
-            <hr>
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-        </section>
+    <hr>
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
+    </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="analysis.js"></script>

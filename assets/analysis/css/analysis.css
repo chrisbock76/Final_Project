@@ -1,22 +1,6 @@
-#button1 {
+.analysis_button {
     width: 100px;
     height: 50px;
-    float: left;
     margin-right: 3px;
     background-color: red;
-}
-#button2 {
-    width: 100px;
-    height: 50px;
-    float: left;
-    background-color: red;
-}
-#button1:hover {
-    background-color: yellow;
-}
-#button2:hover {
-    background-color: yellow;
-}
-#button1.selected, #button2.selected {
-    background-color: blue;
 }
